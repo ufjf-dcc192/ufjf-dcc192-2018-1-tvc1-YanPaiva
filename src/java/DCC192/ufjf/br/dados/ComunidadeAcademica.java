@@ -23,6 +23,10 @@ public class ComunidadeAcademica {
     public static ArrayList<Pessoas> getInstances() {
         if (comunidade == null) {
             comunidade = new ArrayList<>();
+            Pessoas teste1 = new Pessoas("a", "a", true);
+            teste1.setDataDisponivelInicio("27/04/2018");
+            teste1.setDataDisponivelTermino("05/06/2018");
+            comunidade.add(teste1);
         }
         return comunidade;
     }
@@ -41,9 +45,9 @@ public class ComunidadeAcademica {
     }
 
     public static Pessoas verificaSeCadastrado(String nome, String senha) {
-        for (Pessoas p : comunidade) {
-            if (nome.equals(p.getNome()) && senha.equals(p.getSenha())) {
-                return p;
+        for (int i=0 ;i<comunidade.size();i++) {
+            if (nome.equals(comunidade.get(i).getNome()) && senha.equals(comunidade.get(i).getSenha())) {
+                return comunidade.get(i);
             }
         }
         return null;
@@ -51,14 +55,14 @@ public class ComunidadeAcademica {
 
     public static ArrayList<Pessoas> match(Pessoas p) {
         ArrayList<Pessoas> aux = new ArrayList<>();
-        for (Pessoas p2 : comunidade) {
+        for (int i =0;i< comunidade.size();i++) {
             SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
             SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
             try {
-                Date date1 = sdf1.parse(p2.getDataDisponivelInicio());
+                Date date1 = sdf1.parse(comunidade.get(i).getDataDisponivelInicio());
                 Date date2 = sdf2.parse(p.getDataDisponivelInicio());
                 if (date1.before(date2)) {
-                    aux.add(p2);
+                    aux.add(comunidade.get(i));
                 }
             } catch (ParseException ex) {
                 Logger.getLogger(ComunidadeAcademica.class.getName()).log(Level.SEVERE, null, ex);

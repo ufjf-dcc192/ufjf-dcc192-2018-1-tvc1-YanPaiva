@@ -23,9 +23,9 @@
             </thead>
             <tbody>
                 <tr>
+                    <td><%=((Pessoas)request.getAttribute("pessoa")).getNome()%></td>
                     <td><select name="matchs">
-                               <option><%=((Pessoas)request.getAttribute("pessoa")).getNome()%></option>
-                            <c:forEach var="p" items="${match}">                
+                              <c:forEach var="p" items="${match}">                
                                 <option>${p.getNome()}</option>  
                                 <option><input type="text" name="DataLimite" value="${p.getDataDisponivelTermino()}" size="50" readonly="readonly" /></option>
                             </c:forEach>

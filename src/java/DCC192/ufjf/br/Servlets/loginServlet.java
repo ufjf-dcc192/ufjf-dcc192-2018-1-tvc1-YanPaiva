@@ -5,6 +5,9 @@
  */
 package DCC192.ufjf.br.Servlets;
 
+import DCC192.ufjf.br.dados.ComunidadeAcademica;
+import DCC192.ufjf.br.dados.Intercambistas;
+import DCC192.ufjf.br.dados.Pessoas;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -18,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author YanNotebook
  */
-@WebServlet(name = "loginServlet", urlPatterns = {"/login.htm"})
+@WebServlet(name = "loginServlet", urlPatterns = {"/login.html"})
 public class loginServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,8 +36,22 @@ public class loginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String user =request.getParameter("usuario");
-        
-    
+        String pass = request.getParameter("senha");
+        ComunidadeAcademica.getInstances();
+        Intercambistas.getInstances();
+        if(ComunidadeAcademica.verificaSeCadastrado(user, pass) !=null){
+            RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/logado.jsp");
+            request.setAttribute("pessoa", ComunidadeAcademica.verificaSeCadastrado(user, pass));
+            despachante.forward(request, response);
+
+        }else if(Intercambistas.verificaSeCadastrado(user, pass) !=null){
+            RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/logado.jsp");
+            request.setAttribute("pessoa", Intercambistas.verificaSeCadastrado(user, pass));
+            despachante.forward(request, response);
+
+        }else{
+            response.sendRedirect("login.html");
+        }
     }
     
 }

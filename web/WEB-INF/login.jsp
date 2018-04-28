@@ -29,7 +29,7 @@
                             <h2>Senha:</h2>
                         </td>
                         <td>
-                            <input type="password" name="Senha" value="" size="50"/>
+                            <input type="password" name="senha" value="" size="50"/>
                         </td>
                     </tr>
                 </tbody>

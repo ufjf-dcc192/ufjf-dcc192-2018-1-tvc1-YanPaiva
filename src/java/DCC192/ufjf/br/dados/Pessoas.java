@@ -66,6 +66,14 @@ public class Pessoas {
     public void setEhComunidade(boolean ehComunidade) {
         this.ehComunidade = ehComunidade;
     }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
     
 
 }

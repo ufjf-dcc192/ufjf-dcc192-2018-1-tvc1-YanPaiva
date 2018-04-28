@@ -9,9 +9,39 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Cadastro</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <form method="POST">
+            <table border="1">
+                <tbody>
+                    <tr>
+                        <td><h3>insira seu nome</h3></td>
+                        <td><input type="text" name="nomeUsuario" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td><h3>insira sua senha</h3></td>
+                        <td><input type="password" name="senhaUsuario" value="" /></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><h3>se for intercambista deixe a caixa desmarcada</h3></td>
+                        <td><input type="checkbox" name="checkComunidade" value="ON" /></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><h3>Insira a data incial que pretende fazer intercambio ou receber alguem</h3></td>
+                        <td><input type="text" name="dataInicial" value="" /></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><h3>Insira a data final que pretende fazer intercambio ou receber alguem</h3></td>
+                        <td><input type="text" name="dataFinal" value="" /></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+            <input type="submit" value="cadastrar" name="btncadastrar" />
+        </form>
     </body>
 </html>

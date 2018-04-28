@@ -30,7 +30,8 @@
                     </tr>
                     
                     <tr>
-                        <td><h3>Insira a data incial que pretende fazer intercambio ou receber alguem</h3></td>
+                        <td><h3>Insira a data incial que pretende fazer<br> intercambio ou receber alguem, 
+                            no modelo DIA/MES/ANO(com 4 digitos)</h3></td>
                         <td><input type="text" name="dataInicial" value="" /></td>
                     </tr>
                     

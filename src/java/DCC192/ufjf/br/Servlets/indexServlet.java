@@ -7,6 +7,7 @@ package DCC192.ufjf.br.Servlets;
 
 import DCC192.ufjf.br.dados.ComunidadeAcademica;
 import DCC192.ufjf.br.dados.Intercambistas;
+import DCC192.ufjf.br.dados.Pessoas;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -38,13 +39,34 @@ public class indexServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse responce) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ComunidadeAcademica.getInstances();
         Intercambistas.getInstances();
+        Pessoas p = new Pessoas();
         RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/login.jsp");
-        request.setAttribute("namenomeUsuario", this);
+        String nome = request.getParameter("nomeUsuario");
+        String senha = request.getParameter("senhaUsuario");
+        String dataInicio = request.getParameter("dataInicial");
+        String dataFinal = request.getParameter("dataFinal");
+        boolean ehDaComunidade;
+        if ("ON".equals(request.getParameter("checkComunidade"))) {
+            ehDaComunidade = false;
+            p.setNome(nome);
+            p.setSenha(senha);
+            p.setEhComunidade(ehDaComunidade);
+            p.setDataDisponivelInicio(dataInicio);
+            p.setDataDisponivelTermino(dataInicio);
+            Intercambistas.getInstances().add(p);
+        } else {
+            ehDaComunidade = true;
+            p.setNome(nome);
+            p.setSenha(senha);
+            p.setEhComunidade(ehDaComunidade);
+            p.setDataDisponivelInicio(dataInicio);
+            p.setDataDisponivelTermino(dataInicio);
+            ComunidadeAcademica.getInstances().add(p);       
+        }
         
-        request.setAttribute("pessoa", ComunidadeAcademica.verificaSeCadastrado(user, pass));
         despachante.forward(request, response);
 
     }

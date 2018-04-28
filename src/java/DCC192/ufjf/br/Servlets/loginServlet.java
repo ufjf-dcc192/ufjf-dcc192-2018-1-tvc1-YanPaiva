@@ -35,6 +35,7 @@ public class loginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String url = request.getParameter("Cadastra");
         String user =request.getParameter("usuario");
         String pass = request.getParameter("senha");
         ComunidadeAcademica.getInstances();
@@ -49,6 +50,9 @@ public class loginServlet extends HttpServlet {
             request.setAttribute("pessoa", Intercambistas.verificaSeCadastrado(user, pass));
             despachante.forward(request, response);
 
+        }else if("".equals(url)){
+            response.sendRedirect("cadastro.html");
+        
         }else{
             response.sendRedirect("login.html");
         }
